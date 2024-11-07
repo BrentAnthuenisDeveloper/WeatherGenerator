@@ -16,10 +16,10 @@ function randomNormal(mean: number = 0, stdDev: number) {
     return mean + z0 * stdDev;
 }
 const generateTemperature = () => {
-    return randomNormal(0, 20)
+    return randomNormal(8, 12)
 }
 const generateWindSpeed = () => {
-    let windspeed = randomNormal(34, 17)
+    let windspeed = randomNormal(34, (117-34)/2)
     if (windspeed < 0) {
         windspeed = 0
     }
@@ -30,7 +30,7 @@ const generateWindDirection = () => {
     return windDirection
 }
 const generatePrecipitation = () => {
-    let precipitation = randomNormal(5, 5)
+    let precipitation = randomNormal(5, 25)-10
     if (precipitation < 0) {
         precipitation = 0
     }
