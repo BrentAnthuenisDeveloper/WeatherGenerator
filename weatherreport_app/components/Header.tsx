@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet,View, Text } from 'react-native';
 
-const WeatherReports = () => {
+const NewWeatherReport = () => {
     return (
-        <Text>page for viewing 1 weather report</Text>
+        <Text>this is the header</Text>
     );
 };
-
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -16,5 +15,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default WeatherReports;
-
+export default NewWeatherReport;
