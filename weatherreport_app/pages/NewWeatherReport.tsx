@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet,View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 const NewWeatherReport = () => {
   return (
-    <Text>page for generating a new weather report</Text>
+    <View style={styles.container}>
+      <Text>page for generating a new weather report</Text>
+    </View>
   );
 };
 

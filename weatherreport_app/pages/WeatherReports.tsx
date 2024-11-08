@@ -1,20 +1,22 @@
 import React from 'react';
-import { StyleSheet,View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 
 const WeatherReports = () => {
     return (
-        <Text>page for viewing 1 weather report</Text>
+        <View style={styles.container}>
+            <FlatList></FlatList>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-  });
+});
 
 export default WeatherReports;
 

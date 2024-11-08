@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import WeatherReport from '../helpers/Models/WeatherReport';
 
-const WeatherReportDetails = () => {
+const NewWeatherReport = (weatherreport:WeatherReport) => {
     return (
         <View style={styles.container}>
-            <Text>page for viewing all of the generated weatherreports</Text>
+            <Text>this is a weatherreportlistitem</Text>
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default WeatherReportDetails;
+export default NewWeatherReport;
