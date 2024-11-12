@@ -79,7 +79,7 @@ class WeatherGenerator {
             }
         } else if (windSpeed.level == 2) effects.push(getEffect("high winds"));
 
-        const generatedWeather: Weather = { temperature, windSpeedIn_Kmperh: windSpeed, windDirection, precipitationIn_mmperH: precipitation, precipationtype: precipationtype, cloudiness: cloudiness, shorthands: effects }
+        const generatedWeather: Weather = { temperature, windSpeedIn_Kmperh: windSpeed, windDirection, precipitationIn_mmperH: precipitation, precipationtype: precipationtype, cloudiness: cloudiness, effects: effects }
         return generatedWeather
     };
     GenerateRandomWeatherReport = (datetime: Date): WeatherReport => {

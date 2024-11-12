@@ -12,7 +12,6 @@ export type Weather = {
     precipitationIn_mmperH: Precipitation
     precipationtype: string
     cloudiness: Cloudiness
-    shorthands: string[]
     effects: Effect[]
 }
 export default Weather

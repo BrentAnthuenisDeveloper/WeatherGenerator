@@ -24,7 +24,7 @@ const EFFECTS = [
     new Effect("Blizzard", "theres a blizzard going on", "At the end of every hour spend in a Blizzard, make a DC 12 Constitution saving. On failure, you take 3d4 cold damage and gain one level of exhaustion. You make this check with advantage if you have proper gear. All creatures are heavily obscured if they are more than 20 feet from you. All terrain is difficult terrain. Also has the effect of Snow, High Winds, and Freezing Cold. Replace with Thunderstorm when in climates without snow.")
 ]
 
-export const getEffect = (name: string): Effect | undefined => {
-    return EFFECTS.find((value) => value.name == name)
+export const getEffect = (name: string): Effect => {
+    return EFFECTS.find((value) => value.name == name) ?? EFFECTS[0]
 }
 export default Effect
