@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, FlatList } from "react-native";
 import WeatherGenerator from "../helpers/WeatherGenerator";
-import WeatherReport from "../helpers/DetailedWeather/Models/WeatherReport";
 import WeatherReportListItem from "../components/WeatherReportListItem";
 
 const WeatherReports = () => {
@@ -11,8 +10,8 @@ const WeatherReports = () => {
 		<View style={styles.list}>
 			<FlatList
 				data={WeatherReports}
-				renderItem={({ weatherReport }: { weatherReport: WeatherReport }) => (
-					<WeatherReportListItem weatherReport={weatherReport} />
+				renderItem={({ item }) => (
+					<WeatherReportListItem weatherReport={item} />
 				)}
 			/>
 		</View>

@@ -1,26 +1,18 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigatorScreenParams } from "@react-navigation/native";
-import NewWeatherReport from '../components/DateTimePicker';
-import WeatherReports from '../pages/WeatherReports';
+import NewWeatherReport from "../components/DateTimePicker";
+import WeatherReports from "../pages/WeatherReports";
 
-type MainNavigationParamList = {
-};
+const Stack = createStackNavigator();
 
-const Drawer = createDrawerNavigator<MainNavigationParamList>();
+type MainNavigationParamList = {};
 const MainNavigation = () => {
 	return (
-		<Drawer.Navigator
-			screenOptions={{
-				drawerStyle: {
-					backgroundColor: "#c6cbef",
-					width: 240,
-				},
-				headerShown: false,
-			}}
-		>
-			<Drawer.Screen name="newWeatherReport" component={NewWeatherReport} />
-			<Drawer.Screen name="weatherReports" component={WeatherReports} />
-		</Drawer.Navigator>
+		//todo: stack and tab navigator
+		<Stack.Navigator>
+			<Stack.Screen name="newWeatherReport" component={NewWeatherReport} />
+			<Stack.Screen name="weatherReports" component={WeatherReports} />
+		</Stack.Navigator>
 	);
 };
-export default MainNavigation
+export default MainNavigation;
