@@ -1,3 +1,5 @@
+import Cloudiness from "./Cloudiness"
+import Effect from "./Effect"
 import Precipitation from "./Precipitation"
 import Temperature from "./Temperature"
 import WindDirection from "./WindDirection"
@@ -8,5 +10,8 @@ export type Weather = {
     windSpeedIn_Kmperh: WindSpeed
     windDirection: WindDirection
     precipitationIn_mmperH: Precipitation
+    precipationtype: string
+    cloudiness: Cloudiness
+    effects: Effect[]
 }
 export default Weather
