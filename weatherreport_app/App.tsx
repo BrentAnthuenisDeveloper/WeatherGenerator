@@ -1,38 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Drawer } from 'expo-router/drawer';
+import "./gesture-handler";
+import { StyleSheet, Text, View } from "react-native";
+import * as SplashScreen from "expo-splash-screen";
+import * as Font from "expo-font";
+import React, { useState, useCallback, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import MainNavigation from "./navigation/MainNavigation";
 
 export default function App() {
-  return (
-    <GestureHandlerRootView style={styles.container}>
-      <Drawer>
-        <Drawer.Screen
-          name="pages/NewWeatherReport"
-          options={{
-            drawerLabel: 'NewWeatherReport',
-            title: 'NewWeatherReport',
-          }}
-        />
-      </Drawer>
-      <Drawer>
-        <Drawer.Screen
-          name="pages/WeatherReports"
-          options={{
-            drawerLabel: 'WeatherReports',
-            title: 'WeatherReports',
-          }}
-        />
-      </Drawer>
-    </GestureHandlerRootView>
-  );
+  const [fontsLoaded] = Font.useFonts({
+		"canterbury": require("./assets/fonts/canterbury.Regular.ttf"),
+		"medievalSharp": require("./assets/fonts/MedievalSharp-Regular.ttf"),
+	});
+	const [appIsReady, setAppIsReady] = useState(false);
+
+	useEffect(() => {
+		if (fontsLoaded) {
+			setAppIsReady(true);
+		}
+	}, [fontsLoaded]);
+	const onLayoutRootView = useCallback(async () => {
+		if (appIsReady) {
+			await SplashScreen.hideAsync();
+		}
+	}, [appIsReady]);
+
+	if (!appIsReady) {
+		return null;
+	}
+	return (
+    //todo : add stack navigation and navigation between pages
+		<NavigationContainer onReady={onLayoutRootView}>
+			<MainNavigation />
+		</NavigationContainer>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  basic:{
+    font
+  }
 });

@@ -1,8 +1,8 @@
 class WindSpeed {
-    level?: number;
+    level: number;
     KmperH: number;
     knots: number;
-    name?: string;
+    name: string;
 
     private windSpeedToBeaufortNameDict = [
         { KmPerH: 1, name: "Calm", level: 1, description: "smoke rises vertically" },

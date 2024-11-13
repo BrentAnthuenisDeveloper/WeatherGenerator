@@ -6,7 +6,7 @@ class Precipitation {
     private difference = 45
     private deviation = this.difference / 2;
     private precipitationNameDict = [
-        {maxIndex:0.5,name:"No rain"},
+        {maxIndex:0.2,name:"No rain"},
         {maxIndex:2,name:"Weak rain"},
         {maxIndex:6,name:"Moderate rain"},
         {maxIndex:10,name:"Heavy rain"},
