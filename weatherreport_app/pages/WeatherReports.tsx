@@ -15,7 +15,7 @@ type WeatherReportsStackNavigationProp = StackNavigationProp<DetailsStackNavPara
 const WeatherReports = () => {
 	const weatherGenerator = new WeatherGenerator();
 	const WeatherReports = weatherGenerator.weatherReports;
-	const navigation = useNavigation<WeatherReportsStackNavigationProp>();
+	const nav = useNavigation<WeatherReportsStackNavigationProp>();
 
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const onNewWeatherReportButtonPress = () => {
