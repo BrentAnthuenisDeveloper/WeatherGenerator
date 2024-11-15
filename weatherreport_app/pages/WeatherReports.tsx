@@ -1,11 +1,14 @@
 import React from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList,Button } from "react-native";
 import WeatherGenerator from "../helpers/WeatherGenerator";
 import WeatherReportListItem from "../components/WeatherReportListItem";
 
 const WeatherReports = () => {
 	const weatherGenerator = new WeatherGenerator();
 	const WeatherReports = weatherGenerator.weatherReports;
+	const onNewWeatherReportButtonPress=()=>{
+		//todo: show newweatherreportscren as modal
+	}
 	return (
 		<View style={styles.list}>
 			<FlatList
@@ -14,6 +17,7 @@ const WeatherReports = () => {
 					<WeatherReportListItem weatherReport={item} />
 				)}
 			/>
+			<Button title="generate new weather report" onpress={onNewWeatherReportButtonPress} />
 		</View>
 	);
 };

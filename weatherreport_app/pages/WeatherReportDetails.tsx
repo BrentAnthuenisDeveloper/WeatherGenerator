@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import WeatherReport from '../helpers/Models/WeatherReport';
 
-const WeatherReportDetails = () => {
+const WeatherReportDetails = ({weatherreport}:{weatherreport:WeatherReport}) => {
     return (
         <View style={styles.container}>
-            <Text>page for viewing all of the generated weatherreports</Text>
+            <Text>page for viewing the specifics of the weatherreport on {weatherreport.dateTime.toLocaleString()}</Text>
         </View>
     );
 };
