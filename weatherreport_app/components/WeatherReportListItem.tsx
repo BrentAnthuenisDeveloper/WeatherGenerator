@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import WeatherReport from "../helpers/DetailedWeather/Models/WeatherReport";
+import WeatherReport from "../helpers/Models/WeatherReport";
 
 type WeatherReportListItemProps = {
 	weatherReport: WeatherReport;

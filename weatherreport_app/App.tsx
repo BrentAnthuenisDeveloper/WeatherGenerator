@@ -1,10 +1,10 @@
 import "./gesture-handler";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet} from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import React, { useState, useCallback, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import MainNavigation from "./navigation/MainNavigation";
+import AboutTabNav from "./navigation/AboutTabNav";
 
 SplashScreen.preventAutoHideAsync();
 export default function App() {
@@ -31,7 +31,7 @@ export default function App() {
 	return (
 		//todo : add stack navigation and navigation between pages
 		<NavigationContainer onReady={onLayoutRootView}>
-			<MainNavigation />
+			<AboutTabNav />
 		</NavigationContainer>
 	);
 }

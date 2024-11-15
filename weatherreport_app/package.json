@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^8.2.0",
+    "@react-navigation/bottom-tabs": "^7.0.3",
     "@react-navigation/native": "^7.0.0",
     "@react-navigation/stack": "^7.0.0",
     "expo": "~51.0.28",
@@ -19,7 +21,8 @@
     "react-native": "0.74.5",
     "react-native-date-picker": "^5.0.7",
     "react-native-gesture-handler": "~2.16.1",
-    "react-native-pager-view": "6.3.0"
+    "react-native-pager-view": "6.3.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
