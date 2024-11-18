@@ -19,7 +19,7 @@ const WeatherReports = () => {
 
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const onNewWeatherReportButtonPress = () => {
-		//todo: show newweatherreportscreen as modal
+		setIsModalVisible(true);
 	}
 	return (
 		<View style={styles.list}>
@@ -39,7 +39,6 @@ const WeatherReports = () => {
 				transparent={false} // Make the background transparent
 				onRequestClose={() => { setIsModalVisible(false) }} // Handle back button press on Android
 			>
-				{/* To make the background dark, use a full screen overlay */}
 				<View>
 					<NewWeatherReport />
 				</View>

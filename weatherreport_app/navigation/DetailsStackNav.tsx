@@ -15,9 +15,10 @@ const Stack = createStackNavigator<DetailsStackNavParamList>();
 const DetailsStackNav = () => {
 	return (
 		//todo: stack and tab navigator
-		<Stack.Navigator screenOptions={{
+		<Stack.Navigator screenOptions={({ route }) => ({
 			headerShown: true,
-		}}>
+			header: () => <Header title={route.name} />, // Use route.name for dynamic title
+		  })}>
 			<Stack.Screen name="weatherReports" component={WeatherReports}
 			// options: {
 			// 	headerTitle: (props) => <Header {...props} />,

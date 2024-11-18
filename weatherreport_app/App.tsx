@@ -1,5 +1,5 @@
 import "./gesture-handler";
-import { StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import React, { useState, useCallback, useEffect } from "react";
@@ -16,7 +16,7 @@ export default function App() {
 
 	useEffect(() => {
 		if (fontsLoaded) {
-			setAppIsReady(true);
+			setTimeout(() => { setAppIsReady(true) }, 2000)
 		}
 	}, [fontsLoaded]);
 	const onLayoutRootView = useCallback(async () => {
@@ -29,7 +29,6 @@ export default function App() {
 		return null;
 	}
 	return (
-		//todo : add stack navigation and navigation between pages
 		<NavigationContainer onReady={onLayoutRootView}>
 			<AboutTabNav />
 		</NavigationContainer>
