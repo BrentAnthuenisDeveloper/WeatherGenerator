@@ -11,8 +11,8 @@ class WeatherGenerator {
 	weatherReports: WeatherReport[];
 	currentWeatherReport: WeatherReport | undefined;
 	constructor() {
-		this.weatherReports = []
-		this.AddDummyWeatherReports(5)
+		this.weatherReports = [];
+		this.AddDummyWeatherReports(5);
 	}
 	private randomNormal(mean: number = 0, stdDev: number) {
 		// Generate two uniform random numbers in the range (0, 1)
@@ -104,18 +104,21 @@ class WeatherGenerator {
 			dateTime: datetime,
 			weather: this.GenerateRandomWeather(),
 		};
+		this.weatherReports.push(newWeatherReport);
+		this.currentWeatherReport = newWeatherReport;
 		return newWeatherReport;
 	};
 	AddDummyWeatherReports = (count: number): void => {
 		for (let index = 0; index < count; index++) {
-			const rndDate = this.randomDate(new Date(2012, 0, 1), new Date());
-			this.weatherReports.push(this.GenerateRandomWeatherReport(rndDate))
-
+			const rndDate = this.randomDate(new Date(1900, 0, 1), new Date());
+			this.GenerateRandomWeatherReport(rndDate);
 		}
-	}
+	};
 	randomDate = (start: Date, end: Date): Date => {
-		return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-	}
+		return new Date(
+			start.getTime() + Math.random() * (end.getTime() - start.getTime())
+		);
+	};
 }
 
 export default WeatherGenerator;

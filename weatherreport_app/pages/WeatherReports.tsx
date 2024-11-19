@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, View, FlatList, Button, Modal } from "react-native";
 import WeatherGenerator from "../helpers/WeatherGenerator";
 import WeatherReportListItem from "../components/WeatherReportListItem";
@@ -17,19 +17,28 @@ type WeatherReportsStackNavigationProp = StackNavigationProp<
 	"weatherReports"
 >;
 
+export const weatherGenerator = new WeatherGenerator();
+
 const WeatherReports = () => {
-	const weatherGenerator = new WeatherGenerator();
-	const WeatherReports = weatherGenerator.weatherReports;
+	
+	const [weatherReports, setWeatherReports] = useState(
+		weatherGenerator.weatherReports
+	);
 	const nav = useNavigation<WeatherReportsStackNavigationProp>();
+
+	useEffect(() => {
+		setWeatherReports(weatherGenerator.weatherReports);
+	}, weatherGenerator.weatherReports);
 
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const onNewWeatherReportButtonPress = () => {
 		setIsModalVisible(true);
 	};
+
 	return (
 		<View style={styles.list}>
 			<FlatList
-				data={WeatherReports}
+				data={weatherReports}
 				renderItem={({ item }) => (
 					<>
 						<WeatherReportListItem weatherReport={item} />

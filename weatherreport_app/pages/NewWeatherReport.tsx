@@ -15,6 +15,7 @@ import WeatherGenerator from "../helpers/WeatherGenerator";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { weatherGenerator } from "./WeatherReports";
 
 const validationSchema = Yup.object().shape({
 	datetime: Yup.date().required("please select a date and a time"),
@@ -23,11 +24,11 @@ const validationSchema = Yup.object().shape({
 const NewWeatherReport = () => {
 	const [newestWeatherReport, setNewestWeatherReport] = useState<
 		WeatherReport | undefined
-	>(undefined);
+	>(weatherGenerator.currentWeatherReport);
 	const [showDatePicker, setShowDatePicker] = useState(false);
 	const [showTimePicker, setShowTimePicker] = useState(false);
 	const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-	const generator = new WeatherGenerator();
+	const generator = weatherGenerator
 
 	const generateWeatherButtonPress = () => {
 		if (selectedDate === undefined) {
@@ -71,7 +72,8 @@ const NewWeatherReport = () => {
 			newDate.setHours(
 				newSelectedDate.getHours(),
 				newSelectedDate.getMinutes(),
-				newSelectedDate.getSeconds()
+				newSelectedDate.getSeconds(),
+				newSelectedDate.getMilliseconds()
 			);
 			setSelectedDate(newDate);
 		}
@@ -107,7 +109,7 @@ const NewWeatherReport = () => {
 							{showDatePicker && (
 								<DateTimePicker
 									value={selectedDate || new Date()}
-									mode="date" 
+									mode="date"
 									onChange={handleDateChange}
 								/>
 							)}
@@ -115,14 +117,14 @@ const NewWeatherReport = () => {
 						<View style={styles.datepicker}>
 							<Button
 								title={
-									selectedDate ? selectedDate.toTimeString() : "Pick a date"
+									selectedDate ? selectedDate.toTimeString() : "Pick a time"
 								}
-								onPress={() => setShowDatePicker(true)}
+								onPress={() => setShowTimePicker(true)}
 							/>
 							{showTimePicker && (
 								<DateTimePicker
 									value={selectedDate || new Date()}
-									mode="time" 
+									mode="time"
 									onChange={handleTimeChange}
 								/>
 							)}
