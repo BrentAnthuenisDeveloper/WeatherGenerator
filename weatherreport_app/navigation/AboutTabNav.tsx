@@ -8,7 +8,6 @@ const Tab = createBottomTabNavigator();
 type MainNavigationParamList = {};
 const AboutTabNav = () => {
 	return (
-		//todo: stack and tab navigator
 		<Tab.Navigator screenOptions={{headerShown:false}}>
 			<Tab.Screen name="about" component={About}
 			 options= {{

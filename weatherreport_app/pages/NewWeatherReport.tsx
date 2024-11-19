@@ -1,25 +1,36 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Button, TextInput, ScrollView, Platform } from "react-native";
+import {
+	StyleSheet,
+	View,
+	Text,
+	Button,
+	TextInput,
+	ScrollView,
+	Platform,
+} from "react-native";
 //import DatePicker from "react-native-date-picker";
 import WeatherReportListItem from "../components/WeatherReportListItem";
 import WeatherReport from "../helpers/Models/WeatherReport";
 import WeatherGenerator from "../helpers/WeatherGenerator";
-import { Formik } from 'formik';
+import { Formik } from "formik";
 import * as Yup from "yup";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const validationSchema = Yup.object().shape({
 	datetime: Yup.date().required("please select a date and a time"),
-})
+});
 
 const NewWeatherReport = () => {
-	const [newestWeatherReport, setNewestWeatherReport] = useState<WeatherReport | undefined>(undefined);
+	const [newestWeatherReport, setNewestWeatherReport] = useState<
+		WeatherReport | undefined
+	>(undefined);
 	const [showDatePicker, setShowDatePicker] = useState(false);
+	const [showTimePicker, setShowTimePicker] = useState(false);
 	const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 	const generator = new WeatherGenerator();
 
 	const generateWeatherButtonPress = () => {
-		if(selectedDate===undefined){
+		if (selectedDate === undefined) {
 			alert("Date and time are required");
 			return;
 		}
@@ -32,33 +43,87 @@ const NewWeatherReport = () => {
 		setNewestWeatherReport(weatherreport);
 	};
 
-	const handleDateChange = (event: any, selectedDate: Date | undefined) => {
-		const currentDate = selectedDate || new Date();
-		setShowDatePicker(Platform.OS === "ios" ? true : false); // Keep it open on iOS
-		setSelectedDate(currentDate);
+	const handleDateChange = (event: any, newSelectedDate: Date | undefined) => {
+		if (Platform.OS === "android" && event?.type === "dismissed") {
+			// Handle cancel event
+			setShowDatePicker(false);
+			return;
+		}
+		if (newSelectedDate) {
+			let newDate = selectedDate ?? new Date();
+			newDate.setFullYear(
+				newSelectedDate.getFullYear(),
+				newSelectedDate.getMonth(),
+				newSelectedDate.getDate()
+			);
+			setSelectedDate(newDate);
+		}
+		setShowDatePicker(false);
+	};
+	const handleTimeChange = (event: any, newSelectedDate: Date | undefined) => {
+		if (Platform.OS === "android" && event?.type === "dismissed") {
+			// Handle cancel event
+			setShowTimePicker(false);
+			return;
+		}
+		if (newSelectedDate) {
+			let newDate = selectedDate;
+			newDate.setHours(
+				newSelectedDate.getHours(),
+				newSelectedDate.getMinutes(),
+				newSelectedDate.getSeconds()
+			);
+			setSelectedDate(newDate);
+		}
+		setShowTimePicker(false);
 	};
 
 	return (
 		<ScrollView>
 			<Formik
-				initialValues={{ datetime: selectedDate ? selectedDate.toString() : "" }}
+				initialValues={{
+					datetime: selectedDate ? selectedDate.toString() : "",
+				}}
 				validationSchema={validationSchema}
 				onSubmit={generateWeatherButtonPress}
 			>
-				{({ handleChange, handleBlur, handleSubmit, values, touched, errors }) => (
+				{({
+					handleChange,
+					handleBlur,
+					handleSubmit,
+					values,
+					touched,
+					errors,
+				}) => (
 					<View style={styles.container}>
 						<Text>select Date and Time</Text>
 						<View style={styles.datepicker}>
 							<Button
-								title={selectedDate ? selectedDate.toLocaleString() : "Pick a date"}
+								title={
+									selectedDate ? selectedDate.toDateString() : "Pick a date"
+								}
 								onPress={() => setShowDatePicker(true)}
 							/>
 							{showDatePicker && (
 								<DateTimePicker
 									value={selectedDate || new Date()}
-									mode="datetime" // Use "time" for a time picker, or "datetime" for both
-									display="default"
+									mode="date" 
 									onChange={handleDateChange}
+								/>
+							)}
+						</View>
+						<View style={styles.datepicker}>
+							<Button
+								title={
+									selectedDate ? selectedDate.toTimeString() : "Pick a date"
+								}
+								onPress={() => setShowDatePicker(true)}
+							/>
+							{showTimePicker && (
+								<DateTimePicker
+									value={selectedDate || new Date()}
+									mode="time" 
+									onChange={handleTimeChange}
 								/>
 							)}
 						</View>
@@ -66,10 +131,11 @@ const NewWeatherReport = () => {
 							<Text style={styles.errorText}>{errors.datetime}</Text>
 						)}
 						<Button
-							onPress={() => { handleSubmit() }}
+							onPress={() => {
+								handleSubmit();
+							}}
 							title="Generate weatherReport"
 						/>
-
 					</View>
 				)}
 			</Formik>
@@ -77,9 +143,7 @@ const NewWeatherReport = () => {
 			{newestWeatherReport && (
 				<WeatherReportListItem weatherReport={newestWeatherReport} />
 			)}
-
 		</ScrollView>
-
 	);
 };
 
